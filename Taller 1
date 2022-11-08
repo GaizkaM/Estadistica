@@ -102,7 +102,7 @@ los jugadores de `fifa23_eur`? Construir una variable llamada `foot` que tenga p
 Va de 1 a 5. 1,2 zurdo,3 ambidiestro y 4,5 diestro
 
 SOLUCIÓN A MEDIAS
-table(value4,droplevels(fifa23-eur$NationalTeam))
+table(value4,droplevels(fifa23_eur$NationalTeam))
 
 
 ## Pregunta 6
