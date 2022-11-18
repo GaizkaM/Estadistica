@@ -74,6 +74,8 @@ fifa23_eur=datos[datos$NationalTeam%in%eur,20]
 
 Calcular la media y la desviación típica   del  valor de cada selección nacional cada equipo del data frame `fifa23_eur`. 
 
+estadisticos = function(x) round(c(median))
+
 Calcular la media y la desviación típica  EN MILES de euros  del valor   de cada jugador `ValueEUR` de cada selección nacional del frame `fifa23_eur` 
 por posición en el campo delantera media y defensa. 
 
