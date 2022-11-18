@@ -12,7 +12,10 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE,cache=FALSE)
+library(dplyr)
+library(knitr)
 ```
+
 
 
 
@@ -40,7 +43,7 @@ Rellenad estos datos:
 
 ##  Carga de datos
 
-Tenéis que carga los datos con el código que se ve a continuación.  Visualizar y explorara el  data set y  averiguar de qué tipo son cada una de las variables y  en qué tipo de  fichero están guardadas.  El código carga los datos en un data frame llamado `datos`  con la función `read.csv`. Debéis entender clases  y tipos de datos de cada de cada columna de datos.  El parámetro `encoding` es necesario para cargar debidamente los acentos y caracteres especiales.
+Tenéis que carga los datos con el código que se ve a continuación.  Visualizar y explorara el  data set y  averiguar de qué tipo son cada una de las variables y  en qué tipo de  fichero están guardadas.  El código carga los datos en un data frame llamado `datos`  con la función `read.csv`. Debéis entender clases  y tipos de datos de cada columna de datos.  El parámetro `encoding` es necesario para cargar debidamente los acentos y caracteres especiales.
 Lo que obtenemos es un data frame de 18539  observaciones (filas)  y 90  variables (columnas).
 
 Cargaremos todas las  variables de texto como factor con el parámetro `stringsAsFactors = TRUE`
@@ -48,11 +51,10 @@ Cargaremos todas las  variables de texto como factor con el parámetro `stringsA
 ```{r}
 datos = read.csv("players_fifa23.csv",
   encoding="UTF-8",stringsAsFactors = TRUE)# cambia tu path
+data.frame(datos)
 #str(datos)
 #names(datos)
 ```
-
-
 Las variables de la 1 (`NationalTeam`) a la 31(`NationalPosition`) son variables de perfil del jugador: su nombre, su  equipo su sueldo su número de camiseta... El resto de variables de la 34 (`pace`) a la 90  (`rb`) son variables numéricas  enteras con valores de 0 a 100 que parametrizan cómo es el jugador el el juego FIFA player 2023.  
 
 
@@ -69,16 +71,22 @@ Generar un data frame con el nombre `fifa23_eur` con los jugadores de estas sele
 
 SOLUCIÓN 1:
 ```{r}
-fifa23_eur=datos[datos$Nationality %in% eur,]
-
+fifa23_eur <- datos[datos$Nationality %in% eur,2]
+data.frame(fifa23_eur)
 ```
+
 ## Pregunta 2
 
-Calcular la media y la desviación típica   del  valor de cada selección nacional cada equipo del data frame `fifa23_eur`. 
+Calcular la media y la desviación típica   del  valor de cada selección nacional de cada equipo del data frame `fifa23_eur`. 
 
 SOLUCION 2:
 ```{r}
+agrupados_por_paises <- datos %>% group_by(Nationality)
 
+media=mean(datos$Overall) 
+sd=sd(datos$Overall)
+
+data.frame(datos$Nationality,media,sd)
 aggregate(ValueEUR~fifa23_eur,data = datos,FUN = function(x){c(media=mean(x),sd=sd(x))})
 
 ```
@@ -97,6 +105,11 @@ fifa23_eur
 
 Discretiza la variable `ValueEUR` de  `fifa23_eur` en los 4 niveles siguientes: "Cuartil_1", "Cuartil_2", "Cuartil_3" y "Cuartil_4", según los cortes 
 por  la función `quantile`para 0.25,0.5 y 0.75. La variable resultante Value_Level tiene que ser un factor ordenado en orden creciente de valor. 
+```{r}
+
+discretize(datos$ValueEUR)
+
+```
 
 ## Pregunta 4
 
