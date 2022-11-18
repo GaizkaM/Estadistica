@@ -68,19 +68,29 @@ eur
 Generar un data frame con el nombre `fifa23_eur` con los jugadores de estas selecciones.
 
 SOLUCIÓN 1:
-fifa23_eur=datos[datos$NationalTeam%in%eur,20]
+```{r}
+fifa23_eur=datos[datos$Nationality %in% eur,]
 
+```
 ## Pregunta 2
 
 Calcular la media y la desviación típica   del  valor de cada selección nacional cada equipo del data frame `fifa23_eur`. 
 
-estadisticos = function(x) round(c(median))
+SOLUCION 2:
+```{r}
+
+aggregate(ValueEUR~fifa23_eur,data = datos,FUN = function(x){c(media=mean(x),sd=sd(x))})
+
+```
 
 Calcular la media y la desviación típica  EN MILES de euros  del valor   de cada jugador `ValueEUR` de cada selección nacional del frame `fifa23_eur` 
 por posición en el campo delantera media y defensa. 
 
+```{r}
+
 fifa23_eur
 
+```
 
 
 ## Pregunta 3
