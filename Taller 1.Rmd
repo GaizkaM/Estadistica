@@ -33,10 +33,10 @@ Hay que contestar con código R explicar  adecuadamente cada salida. Subid a la 
 
 Rellenad estos datos:
 
-**PONED NOMBRE DEL GRUPO**
+**Grupo: Estadística 102**
 
 *  Apellidos, Nombre Alumno 
-*  Apellidos, Nombre Alumno 
+*  Arancibia Laguna, Sol Ángel 
 *  Spalla Ugalde, Ivan 
 *  Medina Gordo,Gaizka  
 
